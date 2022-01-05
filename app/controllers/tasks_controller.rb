@@ -1,12 +1,14 @@
 class TasksController < ApplicationController
   
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:show, :destroy]
   
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
-    @tasks = Task.all
+    @tasks = @current_user.tasks.where(id = params[:id])
+    # @tasks = current_user.show.find_by(id: params[:id])
+    # Task.all
   end
   
   def create
@@ -64,6 +66,8 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find_by(id: params[:id])
     unless @task
       redirect_to root_url
+      #tasks_url
+       
     end
   end
 end
