@@ -1,8 +1,17 @@
- <h1>新規ユーザー登録</h1>
+<h1>新規ユーザー登録</h1>
 
- <%= form_with(model: @user) do |f| %>
+<%= form_with(model: @user) do |f| %>
 
-
+ <% if @user.errors.any? %>
+    <div>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>  
+  <% end %> 
+  
   <%= f.label :email, 'メールアドレス' %>
   <%= f.email_field :email %>
  

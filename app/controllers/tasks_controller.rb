@@ -6,15 +6,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
-    @tasks = @current_user.tasks.where(id = params[:id])
-    # @tasks = current_user.show.find_by(id: params[:id])
-    # Task.all
+    @tasks = current_user.tasks.where(id = params[:id])
   end
   
   def create
-    # @task = Task.new(task_params)
     @task = current_user.tasks.build(task_params)
-    
     if @task.save
       flash[:success] = 'Taskが正常に登録されました'
       redirect_to @task
