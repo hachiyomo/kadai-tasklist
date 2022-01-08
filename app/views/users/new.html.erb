@@ -10,8 +10,11 @@
         <% end %>
       </ul>
     </div>  
-  <% end %> 
+  <% end %>
   
+  <%= f.label :name, 'お名前' %>
+  <%= f.text_field :name %>
+        
   <%= f.label :email, 'メールアドレス' %>
   <%= f.email_field :email %>
  
